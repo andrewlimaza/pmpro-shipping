@@ -9,9 +9,10 @@ jQuery(document).ready(function($){
 
     pmpro_shipping = {
         init: function() {
+            
+        	this.field_names = [ 'firstname', 'lastname', 'address1', 'address2', 'country','city', 'state', 'zipcode'  ];
             this.sameas_checkbox = $('#sameasbilling');
             this.fields = $('#shipping-fields');
-			this.inputs = $('#pmpro_shipping_address_fields').find('input');
 			this.show_sameas_timer = null;
 			
             var self = this;	
@@ -39,6 +40,11 @@ jQuery(document).ready(function($){
 	            }			
 				//hide the fields
 				self.fields.hide();
+				
+				// Integrate with State dropdown, convert #sstate to text input.
+            	if ( $( '#bcountry.crs-country' ).length > 0 ) {
+	            	$('#sstate').replaceWith( '<input type="text" id="sstate" name="sstate"></input>');
+	            }
 
 				//copy the fields			
                 self.inputs.each( function() {					
